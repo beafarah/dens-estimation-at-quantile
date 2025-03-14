@@ -29,5 +29,8 @@ We illustrate this procedure for an exponential distribution with rate 1.5 with 
 
 ![diff for density estim exponential](https://github.com/user-attachments/assets/2c19be49-ae6a-4f97-8454-845116ead13f)
 
+All simulations can be run using the auximilary codes in src/code_source and src/simulations_and_results
+The folder src has the corresponding codes for computing the estimation of the density for the Exponential and Cauchy distributions. The estimations using our proposed procedure are compare to the ones obtained using kernel density estimation with bandwidth parameter approximated using leave-one-out cross-validation.
+
 # References
 Lin, C., Zhang, L., & Zhou, Y. (2015). Conditional quantile residual lifetime models for right censored data. Lifetime data analysis, 21, 75-96.
