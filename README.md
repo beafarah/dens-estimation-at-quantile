@@ -13,9 +13,13 @@ In our procedure, we need to specify the variance of the generated gaussian vari
 
 In the simulations performed to study the behavior of the MSE for different values of $\sigma^2$, we notice for all sample sizes that the MSE decreases until it reaches a plateau where it stays small for an interval of values of $\sigma$, after which it increases again. Our goal is then to select a value of $\sigma$ that is inside such interval, which grows larger as sample size increases. 
 
+The behavior of the MSE for different values of $\sigma$ is illustrated below, for 100 repetitions of the code for an exponential distribution with rate 1.5 evaluated at the median, with exponential censoring with rate 0.48 and B = 100000 generated gaussians.
+
 ![new_expo_n50_M100](https://github.com/user-attachments/assets/572cc906-e562-4f06-8847-dc4873499e58)
 
 ![new_expo_n200_M100](https://github.com/user-attachments/assets/7c72629f-3ff9-434e-a1b8-ca12dc407801)
 
 ![new_expo_n1000_M100](https://github.com/user-attachments/assets/ca0f7a68-b66a-423b-9898-464795b7f8b8)
+
+We propose a grid-search algorithm in order to choose a value of $\sigma$ in an automatic way. Seen that the best values of this parameter knowing the true value of the density at the quantile belong to an interval, we aim to detect this plateau from the estimated densities at the quantiles, and choose a value that is inside this interval.
 
