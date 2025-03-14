@@ -442,6 +442,33 @@ find_local_maxima_with_region <- function(values, region_size = 1) {
   return(data.frame(ind_sigma = maxima_indices, f_sigmas = maxima_values))
 }
 
+# region_size determines the size of the neighborhood around each point that we examine to check if it's a local maximum and if there's a plateau around it.
+
+find_local_minima_with_region <- function(values, region_size = 1) {
+  # Check if the input vector has enough elements for the specified region
+  if (length(values) < (2 * region_size + 1)) {
+    stop("The input vector is too short for the specified region size.")
+  }
+  
+  # Initialize empty lists to store indices and values of local minima
+  minima_indices <- c()
+  minima_values <- c()
+  
+  # Loop through the vector, considering only valid indices for the region
+  for (i in (region_size + 1):(length(values) - region_size)) {
+    # Extract the region around the current element
+    region <- values[(i - region_size):(i + region_size)]
+    
+    # Check if the current element is the minimum in the region
+    if (values[i] == min(region) && sum(values[i] == region) == 1) {
+      minima_indices <- c(minima_indices, i)
+      minima_values <- c(minima_values, values[i])
+    }
+  }
+  
+  # Return a data frame with indices and values of local minima
+  return(data.frame(ind_sigma = minima_indices, abs_diff_f = minima_values))
+}
 
 find_quantile = function(DATA1){
   n0 = nrow(DATA1)
@@ -494,6 +521,44 @@ find_quantile = function(DATA1){
   # value from the first column of the matrix x at the row index1
   xxi <- x[index1, 1]
   return(unname(xxi))
+}
+
+
+################################################
+# KDE
+# Using kernel density estimation
+K_triang <- function(x){
+  # triangular ker 
+  y=x
+  y[-1<=x & x<=0] <- x[-1<=x & x<=0]+1
+  y[x<=1 & x>0] <- 1-x[x<=1 & x>0]
+  y[x<(-1) | x>1] <- rep(0,sum(x<(-1) | x>1))
+  return(y)
+}
+
+K_gaussian <- function(x){
+  # gaussian ker
+  return((1/sqrt(2*pi))*exp(-(1/2)*x^2))
+}
+
+our_kde<-function(t, alltimes, status, h, ker = "triangular"){
+  # alltimes = observed (censored) times sorted
+  # status = censoring status sorted
+  num = length(alltimes)
+  G_hat = survfit(Surv(alltimes, 1- status)~1) # KM estimator of the survival function of censoring 
+  scalier_fun <- stepfun(G_hat$time,c(1,G_hat$surv))
+  uncensored_times = alltimes[status == 1]
+  
+  if(ker == "triangular"){
+    kde = sum(K_triang((uncensored_times-t)/h)/(scalier_fun(uncensored_times)))/(num*h)
+  }
+  else if(ker == "gaussian"){
+    kde = sum(K_gaussian((uncensored_times-t)/h)/(scalier_fun(uncensored_times)))/(num*h)
+  }
+  else{
+    return("ker should be triangular or gaussian")
+  }
+  return(kde)
 }
 
 # cross validation
