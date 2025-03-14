@@ -4,7 +4,7 @@ We present a method inspired by Lin et al., 2015 in order to estimate the densit
 We require the densities at the quantiles to be strictly positive, and we denote as $\hat{F}$ the consistent estimator for $F$ obtained from the usual Kaplan-Meier estimation. Taking this estimator we obtain $\hat{F}^{-1}(p)$ the estimators of the inverse distribution at $p$. Then we propose the following estimation procedure:
 
 1. Generate B realizations of the gaussian $T \sim \mathcal{N}(0, \sigma^2)$, denoted by $T_1,..., T_B$
-2.  Calculate $\sqrt{n}\left( \hat{F}\left(\hat{F}^{-1}(p) + \dfrac{T_b}{\sqrt{n}}\right) - p \right), b = 1,..., B$ and denote them as $y_b$, then the least squares estimate of $A(F^{-1}(p))$ is $\hat{A} = (x'x)^{-1}x'Y$, where $x= (T_1,..., T_B)^T$ and $Y = (y_1,..., y_B)^T$
+2.  Calculate $\sqrt{n}\left( \hat{F}\left(\hat{F}^{-1}(p) + \dfrac{T_b}{\sqrt{n}}\right) - p \right), b = 1,..., B$ and denote them as $y_b$, then the least squares estimate of $f(F^{-1}(p))$ is $\hat{A} = (x'x)^{-1}x'Y$, where $x= (T_1,..., T_B)^T$ and $Y = (y_1,..., y_B)^T$
 
 In order to choose the variance of the generated gaussians $\sigma^2$, we suggest to perform an automatic bandwidth selection via grid-search.
 
