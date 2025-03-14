@@ -18,3 +18,4 @@ In the simulations performed to study the behavior of the MSE for different valu
 ![new_expo_n200_M100](https://github.com/user-attachments/assets/7c72629f-3ff9-434e-a1b8-ca12dc407801)
 
 ![new_expo_n1000_M100](https://github.com/user-attachments/assets/ca0f7a68-b66a-423b-9898-464795b7f8b8)
+
