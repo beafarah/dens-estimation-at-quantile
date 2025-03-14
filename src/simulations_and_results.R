@@ -9,7 +9,6 @@ library(mgcv)
 library(zoo)
 library(flexsurv)
 source("~/GitHub/dens-estimation-at-quantile/src/code_source.R")
-#source("~/GitHub/these/kosorok/kosorok_test_source.R")
 #rm(list = ls())
 ##############################################################################################################
 # Simulations for paper density estimation
