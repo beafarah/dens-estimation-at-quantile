@@ -23,3 +23,11 @@ The behavior of the MSE for different values of $\sigma$ is illustrated below, f
 
 We propose a grid-search algorithm in order to choose a value of $\sigma$ in an automatic way. Seen that the best values of this parameter knowing the true value of the density at the quantile belong to an interval, we aim to detect this plateau from the estimated densities at the quantiles, and choose a value that is inside this interval.
 
+We illustrate this procedure for an exponential distribution with rate 1.5 with censoring that follows an exponential with rate 0.12 (which gives approximately 10% of censored observations). We are interested in estimating the density of the exponential at the median, which has the real value equal to 0.75. We then perform the estimation of the density at the quantile for a grid of $\sigma$, and we observe that there exists an interval of values of $\sigma$ such that the estimation is small before it and decreases after it as well. We aim to choose a value of $\sigma$ that lays inside this interval, because this is the interval that corresponds to the values close to the real value (marked in the dotted red line). Our code allows us to detect such interval and then it chooses a value of $\sigma$ that lays inside it. The chosen value is marked in blue in the corresponding figures. In this illustrative example, we obtain an estimation of the density at the median equal to 0.745831 (where the real value is 0.75), for a corresponding value of $\sigma$ equal to 3.75. This is performed for a grid of $\sigma$ that goes from 0.1 to 10, in steps of length 0.05. 
+
+![example of density estim at exponential](https://github.com/user-attachments/assets/51a4f61a-6b2e-4cbf-8f38-0a4ad79a8388)
+
+![diff for density estim exponential](https://github.com/user-attachments/assets/2c19be49-ae6a-4f97-8454-845116ead13f)
+
+# References
+Lin, C., Zhang, L., & Zhou, Y. (2015). Conditional quantile residual lifetime models for right censored data. Lifetime data analysis, 21, 75-96.
