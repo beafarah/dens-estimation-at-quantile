@@ -1,5 +1,5 @@
 # Resampling method for density estimation at a survival quantile
-We propose a resampling procedure that allows to estimate $f(F^{-1}(p)$ the survival density at a given quantile, for a given probability $0 < p < 1$.
+We propose a resampling procedure that allows to estimate $f(F^{-1}(p))$ the survival density at a given quantile, for a given probability $0 < p < 1$.
 We present a method inspired by Lin et al., 2015 in order to estimate the density $f$ evaluated at the quantile $F^{-1}(p)$.
 We require the densities at the quantiles to be strictly positive, and we denote as $\hat{F}$ the consistent estimator for $F$ obtained from the usual Kaplan-Meier estimation. Taking this estimator we obtain $\hat{F}^{-1}(p)$ the estimators of the inverse distribution at $p$. Then we propose the following estimation procedure:
 
