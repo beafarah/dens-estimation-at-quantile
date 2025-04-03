@@ -1,5 +1,5 @@
 # Resampling method for density estimation at a survival quantile
-We propose a resampling procedure that allows to estimate $f(F^{-1}(p)$ the survival density at a given quantile, for a given probability $0 < p < 1$.
+We propose a resampling procedure that allows to estimate $f(F^{-1}(p))$ the survival density at a given quantile, for a given probability $0 < p < 1$.
 We present a method inspired by Lin et al., 2015 in order to estimate the density $f$ evaluated at the quantile $F^{-1}(p)$.
 We require the densities at the quantiles to be strictly positive, and we denote as $\hat{F}$ the consistent estimator for $F$ obtained from the usual Kaplan-Meier estimation. Taking this estimator we obtain $\hat{F}^{-1}(p)$ the estimators of the inverse distribution at $p$. Then we propose the following estimation procedure:
 
@@ -30,7 +30,7 @@ We illustrate this procedure for an exponential distribution with rate 1.5 with 
 ![diff for density estim exponential](https://github.com/user-attachments/assets/2c19be49-ae6a-4f97-8454-845116ead13f)
 
 All simulations can be run using the auximilary codes in src/code_source and src/simulations_and_results
-The folder src has the corresponding codes for computing the estimation of the density for the Exponential and Cauchy distributions. The estimations using our proposed procedure are compare to the ones obtained using kernel density estimation with bandwidth parameter approximated using leave-one-out cross-validation.
+The folder src has the corresponding codes for computing the estimation of the density for the Exponential and Cauchy distributions. The estimations using our proposed procedure are compared to the ones obtained using kernel density estimation with bandwidth parameter approximated using leave-one-out cross-validation.
 
 # References
 Lin, C., Zhang, L., & Zhou, Y. (2015). Conditional quantile residual lifetime models for right censored data. Lifetime data analysis, 21, 75-96.
