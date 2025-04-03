@@ -8,9 +8,9 @@ require(parallel)
 # Generates the MSE for the Exponential distribution
 ###############################################################################################
 # change the sample size in order to see the plateau changing
-n <- 50
+n <- 200
 lambda <- 1.5 # median = log(2)/lambda = 0.4620981 #dexp(log(2)/lambda,1.5) =0.75 #2*log(2)
-censparam <- 0.48
+censparam <- 0.12
 TrueT <- rexp(n,lambda) #true quantile equals 0.5
 Cens <- rexp(n,censparam)
 status <- TrueT <= Cens #mean(status)# 0.75727#0.75512
@@ -33,13 +33,14 @@ Yb_hat <- sqrt(n)*(prob-0.5)
 lm_mod_hat <- lm(Yb_hat ~ Tb-1)#sort(Tb)
 summary(lm_mod_hat)
 
-setwd(choose.dir())
+#setwd(choose.dir())
+setwd("C:/Users/beafa/OneDrive/Documents/GitHub/dens-estimation-at-quantile/MSE/n200")
 ###################################################################
 #setwd("C:/Users/beafa/OneDrive/Documents/Results_Simus_Sig01")
 MonteCarlo <- function(n){
-  n <- 50
+  n <- 200
   lambda <- 1.5 # median = log(2)/lambda = 0.4620981 #dexp(log(2)/lambda,1.5) =0.75 #2*log(2)
-  censparam <- 0.48
+  censparam <- 0.12
   TrueT <- rexp(n,lambda) #true quantile equals 0.5
   Cens <- rexp(n,censparam)
   status <- TrueT <= Cens #mean(status)# 0.75727#0.75512
@@ -68,7 +69,7 @@ nb_cores <- 8
 cl <- makeCluster(nb_cores)
 clusterEvalQ(cl, library(survival))
 M <- 125 #number of repetitions = M*nb_cores
-n <- 50
+n <- 200
 for (i in 1:M){
   result <- parLapply(cl, X = rep(n, nb_cores), fun = MonteCarlo)
   #result=mclapply(X=rep(n,nb_cores), FUN=MonteCarlo, mc.cores=nb_cores)
@@ -111,13 +112,13 @@ densit_estim_hat = rep(NA, M)
 #n <- 200
 #n <- 1000
 
-n <- 50
+n <- 200
 
 #B <- 1e+05 #nb of Gaussian replications
 B <- 1e+05
 
 lambda <- 1.5 # median = log(2)/lambda = 0.4620981 #dexp(log(2)/lambda,1.5) =0.75 #2*log(2)
-censparam <- 0.48
+censparam <- 0.12
 
 nb_cores = 8
 cl <- makeCluster(nb_cores)
@@ -184,7 +185,7 @@ for (k in 1:(length(Sigma))){
   MSE_densit_hat[k] <- (Bias_densit_hat[k])^2+Var_densit_hat[k]
   print(k)
 }
-#save(Bias_densit_hat,Var_densit_hat,MSE_densit_hat,file="results_loop_sigma.RData")
+save(Bias_densit_hat,Var_densit_hat,MSE_densit_hat,file="results_loop_sigma.RData")
 stopCluster(cl)
 
 #file_path <- file.choose()
@@ -201,10 +202,12 @@ index_min = which.min(MSE_densit_hat)
 cat(paste("Sigma that minimizes MSE is: "), Sigma[index_min])
 
 #######
-load("C:/Users/beafa/OneDrive/Documents/GitHub/these/density estimation/Results_Loop_Sigma/results_loop_sigma.RData")
-Sigma <- seq(0.1,3,by=0.1)
-plot(Sigma,MSE_densit_hat,type="p", main = "n=50")
-
+#load("C:/Users/beafa/OneDrive/Documents/GitHub/these/density estimation/Results_Loop_Sigma/results_loop_sigma.RData")
+Sigma <- seq(0.1,15,by=0.1)
+plot(Sigma, MSE_densit_hat, type="b", 
+     main = paste("n =", n), 
+     xlab = expression(sigma), 
+     ylab = "MSE")
 
 load("C:/Users/beafa/OneDrive/Documents/GitHub/these/density estimation/Results_Loop_Sigma_n1000/results_loop_sigma.RData")
 plot(Sigma,MSE_densit_hat, type="p", main='n=1000')
