@@ -8,7 +8,7 @@ require(parallel)
 # Generates the MSE for the Exponential distribution
 ###############################################################################################
 # change the sample size in order to see the plateau changing
-n <- 200
+n <- 1000
 lambda <- 1.5 # median = log(2)/lambda = 0.4620981 #dexp(log(2)/lambda,1.5) =0.75 #2*log(2)
 censparam <- 0.12
 TrueT <- rexp(n,lambda) #true quantile equals 0.5
@@ -34,11 +34,11 @@ lm_mod_hat <- lm(Yb_hat ~ Tb-1)#sort(Tb)
 summary(lm_mod_hat)
 
 #setwd(choose.dir())
-setwd("C:/Users/beafa/OneDrive/Documents/GitHub/dens-estimation-at-quantile/MSE/n200")
+setwd("C:/Users/beafa/OneDrive/Documents/GitHub/dens-estimation-at-quantile/MSE/n1000")
 ###################################################################
 #setwd("C:/Users/beafa/OneDrive/Documents/Results_Simus_Sig01")
 MonteCarlo <- function(n){
-  n <- 200
+  n <- 1000
   lambda <- 1.5 # median = log(2)/lambda = 0.4620981 #dexp(log(2)/lambda,1.5) =0.75 #2*log(2)
   censparam <- 0.12
   TrueT <- rexp(n,lambda) #true quantile equals 0.5
@@ -112,7 +112,7 @@ densit_estim_hat = rep(NA, M)
 #n <- 200
 #n <- 1000
 
-n <- 200
+n <- 1000
 
 #B <- 1e+05 #nb of Gaussian replications
 B <- 1e+05
@@ -195,7 +195,7 @@ plot(Sigma,Bias_densit_hat,type="p")
 plot(Sigma,Var_densit_hat,type="p")
 plot(Sigma,MSE_densit_hat,type="p")
 
-plot(Sigma,MSE_densit_hat,type="b", main = paste("n = ", n ) ) 
+plot(Sigma,MSE_densit_hat,type="b", main = paste("n = ", n ), ylab = 'MSE', xlab = expression(sigma) ) 
 
 # sigma that minimizes MSE
 index_min = which.min(MSE_densit_hat)

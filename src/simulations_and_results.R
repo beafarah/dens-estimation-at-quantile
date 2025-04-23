@@ -192,6 +192,9 @@ while(it<nb_it){
   index_lin = max(c(lin_res1, lin_res)) + 20 # sum 20 if the steps are by 0.05, sum 10 if they are of 0.1
   #maybe its actually the maximum instead of the minimum. see if we are being too conservative
   
+  #print(f_sigmas[index_lin])
+  #plot(f_sigmas)
+  
   if(is.na(f_sigmas[index_lin])){
     break
   }
@@ -233,16 +236,23 @@ results_df <- data.frame(
 
 results_df
 
-plot(sd_lst, f_sigmas, xlab = 'Sigma', ylab = 'Estimation of the density at the median', main = "n = 200")
+plot(sd_lst, f_sigmas, xlab = expression(sigma), ylab = 'Estimation of the density at the median', 
+     ylim = c(0.2, 0.9), main = "n = 200")
 abline(v = sd_lst[index_lin], lty = 1, col = 'blue')
 abline(h = f_atmedi0, lty = 2, col = 'red')
-legend("topright", legend = c("Selected sigma by grid-search", "Real value of density at quantile"), 
-       col = c("blue", "red"), lty = c(1, 2))
+legend("topright", legend = c(expression(Selected ~ sigma ~ "by grid-search"), "True value of density at quantile"), 
+       col = c("blue", "red"), lty = c(1, 2),
+       inset = c(0.01, 0.01))
 
-plot(sd_lst, abs(f_sigmas - f_atmedi0), xlab = 'Sigma', ylab = 'Absolute difference between real value and estimation', main = "n = 200")
+plot(sd_lst, abs(f_sigmas - f_atmedi0),xlab = expression(sigma), ylab = 'Absolute difference between real value and estimation', main = "n = 200")
 abline(v = sd_lst[index_lin],lty = 1, col = 'blue')
-legend("topright", legend = c("Selected sigma by grid-search"), 
-       col = c("blue"), lty = c(1))
+legend("topright", legend =  c(expression(Selected ~ sigma ~ "by grid-search")), 
+       col = c("blue"), lty = c(1),
+       inset = c(0.01, 0.01))
+
+#setwd("C:/Users/beafa/OneDrive/Documents/GitHub/dens-estimation-at-quantile/src")
+#save(f_sigmas,file="example_f_sigmas.RData")
+#load("example_f_sigmas.RData")
 ########################################################################################
 # Cauchy survival with exponential censoring
 # Heavy tailed distribution
