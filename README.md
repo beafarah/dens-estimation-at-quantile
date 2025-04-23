@@ -29,17 +29,17 @@ We illustrate this procedure for an exponential distribution with rate 1.5 with 
 
 ![diff for density estim exponential](https://github.com/user-attachments/assets/2c19be49-ae6a-4f97-8454-845116ead13f)
 
-All simulations can be run using the auxililary codes in $\textsc{src/code_source}$ and $\textsc{src/simulations_and_results}$.
+All simulations can be run using the auxililary codes in `src/code_source` and `src/simulations_and_results`.
 The folder src has the corresponding codes for computing the estimation of the density for the Exponential and Cauchy distributions. The estimations using our proposed procedure are compared to the ones obtained using kernel density estimation with bandwidth parameter approximated using leave-one-out cross-validation. Codes for both methods are found in the src folder.
 
 This repository is organised as follows:
-- $\textsc{/src}$:
+- `/src`:
     - code_source: auxiliary codes for test in presence of data and for planning clinical trial using the kernel density estimation and our resmpling procedure
     - planning a clinical trial: codes for the section of Planning a clinical trial from our paper "Univariate and multivariate test of equality of quantiles with right-censored data"
     - simulations_and_results: comparing density estimation with kernel density and our resampling method
     - test on OAK data: applying the density estimatoin for the univariate and multivariate test of equality of quantiles detailed in our paper "Univariate and multivariate test of equality of quantiles with right-censored data"
  
-- $\textsc{/MSE}$: codes for the figures for MSE varying with variance, for exponential distribution
+- `/MSE`: codes for the figures for MSE varying with variance, for exponential distribution
 
 # References
 Lin, C., Zhang, L., & Zhou, Y. (2015). Conditional quantile residual lifetime models for right censored data. Lifetime data analysis, 21, 75-96.
