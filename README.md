@@ -1,20 +1,18 @@
 # Resampling method for density estimation at a survival quantile
-We propose a resampling procedure that allows to estimate $f(F^{-1}(p))$ the survival density at a given quantile, for a given probability $0 < p < 1$.
-We present a method inspired by Lin et al., 2015 in order to estimate the density $f$ evaluated at the quantile $F^{-1}(p)$.
+Implementation of a resampling procedure was inspired by Lin et al., 2015 that allows to estimate $f(F^{-1}(p))$ the survival density at a given quantile, for a given probability $0 < p < 1$.
 We require the densities at the quantiles to be strictly positive, and we denote as $\hat{F}$ the consistent estimator for $F$ obtained from the usual Kaplan-Meier estimation. Taking this estimator we obtain $\hat{F}^{-1}(p)$ the estimators of the inverse distribution at $p$. Then we propose the following estimation procedure:
 
 1. Generate B realizations of the gaussian $T \sim \mathcal{N}(0, \sigma^2)$, denoted by $T_1,..., T_B$
 2.  Calculate $\sqrt{n}\left( \hat{F}\left(\hat{F}^{-1}(p) + \dfrac{T_b}{\sqrt{n}}\right) - p \right), b = 1,..., B$ and denote them as $y_b$, then the least squares estimate of $f(F^{-1}(p))$ is $\hat{A} = (x'x)^{-1}x'Y$, where $x= (T_1,..., T_B)^T$ and $Y = (y_1,..., y_B)^T$
 
-In order to choose the variance of the generated gaussians $\sigma^2$, we suggest to perform an automatic bandwidth selection via grid-search.
+We highlight that the selection of the variance of the sampled Gaussians is crucial, as it can significantly affect the accuracy of the density estimation.
 
 ## Variance selection 
 ### Impact of the variance on the MSE
-In our procedure, we need to specify the variance of the generated gaussian variables. Analysing the MSE for several distributions (such as exponential, piecewise exponential, cauchy, weibull...), we notice that, for small sample sizes, the value of $\sigma^2$ plays an important role in the value of the MSE. Indeed, as one increases sample size, the region where MSE is minimized becomes larger, which allows us to choose the variance more freely in a large interval of values where the MSE is small.
+In order to highlight the effect of $\sigma^2$ on the accuracy of the estimation, we illustrate the estimation of the density at the median for an exponential distribution with rate $1.5$, and compute the MSE for a range of values of $\sigma$. We perform 100 repetitions of the code, assume censoring to be independent and to follow an exponential distribution with rate 0.48. We generate $B=10^5$ zero-mean Gaussians. 
+The code to generate these simulations is available on `MSE/Densite_Point_Estim - Exponential.R`.
 
-In the simulations performed to study the behavior of the MSE for different values of $\sigma^2$, we notice for all sample sizes that the MSE decreases until it reaches a plateau where it stays small for an interval of values of $\sigma$, after which it increases again. Our goal is then to select a value of $\sigma$ that is inside such interval, which grows larger as sample size increases. 
-
-The behavior of the MSE for different values of $\sigma$ is illustrated below, for 100 repetitions of the code for an exponential distribution with rate 1.5 evaluated at the median, with exponential censoring with rate 0.48 and B = 100000 generated gaussians.
+We notice that, especially for small sample sizes, the value of $\sigma$ plays an important role in the value of the MSE. Indeed, as sample size increases, the region where MSE is minimized becomes broader, which allows for greater flexibility when choosing the variance within a wider interval of values where the MSE is close to zero. For all sample sizes, we observe that the MSE has a pattern where it decreases until it reaches a plateau, where it remains low over a range of $\sigma$ values, before increasing again. Our goal in practical applications where survival and censoring distributions are unknown is to be able to automatically detect, from the observed times, such a plateau, and select a value of $\sigma$ that lays inside this interval, which grows broader as sample size increases.
 
 ![new_expo_n50_M100](https://github.com/user-attachments/assets/572cc906-e562-4f06-8847-dc4873499e58)
 
@@ -22,26 +20,24 @@ The behavior of the MSE for different values of $\sigma$ is illustrated below, f
 
 ![new_expo_n1000_M100](https://github.com/user-attachments/assets/ca0f7a68-b66a-423b-9898-464795b7f8b8)
 
-The code to generate these simulations is available on `MSE/Densite_Point_Estim - Exponential.R`.
 
 ### Grid-search algorithm for variance selection
-We propose a grid-search algorithm in order to automatically select $\sigma$. Seen that the best values of this parameter knowing the true value of the density at the quantile belong to an interval, we aim to detect this plateau from the estimated densities at the quantiles, and choose a value that is inside this interval.
+In practice the true value of the density at the quantile is unknown, so we cannot directly compute the MSE to identify the plateau described earlier. We propose a grid-search algorithm to automatically identify this plateau, which will allow us to select an appropriate value for $\sigma$. This procedure is implemented in `src/code_source` and `src/simulations_and_results`.
 
-We illustrate this procedure for an exponential distribution with rate 1.5 with censoring that follows an exponential with rate 0.12 (approximately 10% of censoring). We are interested in estimating the density of the exponential at the median, which true value is 0.75. We then perform the estimation of the density at the quantile for a grid of $\sigma$, and we observe that there exists an interval of values of $\sigma$ such that the estimation is small before it and decreases after it as well. We aim to choose a value of $\sigma$ that lays inside this interval, because this is the interval that corresponds to the values close to the real value (marked in the dotted red line). Our code allows us to detect such interval and then it chooses a value of $\sigma$ that lays inside it. The chosen value is marked in blue in the corresponding figures. In this illustrative example, we obtain an estimation of the density at the median equal to 0.745831, for a corresponding value of $\sigma$ equal to 3.75. This is performed for a grid of $\sigma$ that goes from 0.1 to 10, in steps of length 0.05. 
+We illustrate this algorithm for an exponential distribution with rate 1.5 with censoring that follows an exponential with rate 0.12 (approximately 10% of censoring). We are interested in estimating the density of the exponential at the median, for which the true value is 0.75. We then perform the estimation of the density at the quantile for a grid of $\sigma$  that ranges from 0.1 to 10, in steps of length 0.05. We observe that there exists an interval of values of $\sigma$ such that the estimation is small before it and decreases after it as well. We aim to choose a value of $\sigma$ that lays inside this interval, because this is the interval that corresponds to the values close to the true value (represented by the dotted red line). Our code allows us to detect such interval and then it chooses a value of $\sigma$ that lays inside it. The chosen value is represented in the vertical blue line in the corresponding figures. In this illustrative example, we obtain an estimation of the density at the median equal to 0.745831, for a corresponding value of $\sigma$ equal to 3.75. 
 
 ![example of density estim at exponential](https://github.com/user-attachments/assets/51a4f61a-6b2e-4cbf-8f38-0a4ad79a8388)
 
 ![diff for density estim exponential](https://github.com/user-attachments/assets/2c19be49-ae6a-4f97-8454-845116ead13f)
 
-All simulations can be run using the auxililary codes in `src/code_source` and `src/simulations_and_results`.
 The folder src has the corresponding codes for computing the estimation of the density for the Exponential and Cauchy distributions. The estimations using our proposed procedure are compared to the ones obtained using kernel density estimation (KDE) with bandwidth parameter approximated using leave-one-out cross-validation. Our implementation of LOOCV in the presence of censoring is available on `src/code_source.R`.
 
 ## About the repository
 This repository is organised as follows:
 - `/src`:
-    - code_source: auxiliary codes for test in presence of data and for planning clinical trial using the kernel density estimation and our resmpling procedure
+    - code_source: auxiliary codes for test in presence of data and for planning clinical trial using the kernel density estimation and our resampling procedure, from our paper "Univariate and multivariate test of equality of quantiles with right-censored data"
     - planning a clinical trial: codes for the section of Planning a clinical trial from our paper "Univariate and multivariate test of equality of quantiles with right-censored data"
-    - simulations_and_results: codes for the comparison of our method with KDE, from our paper "A note on a reampling procedure for density estimation at quantiles"
+    - simulations_and_results: codes for the comparison of our method with KDE, detailed in our paper "A note on a reampling procedure for density estimation at quantiles"
     - test on OAK data: applying the density estimatoin for the univariate and multivariate test of equality of quantiles detailed in our paper "Univariate and multivariate test of equality of quantiles with right-censored data"
  
 - `/MSE`: codes for the figures for MSE varying with variance, for exponential distribution
