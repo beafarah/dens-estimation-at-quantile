@@ -1,15 +1,14 @@
 # Resampling method for density estimation at a survival quantile
-Implementation of a resampling procedure was inspired by Lin et al., 2015 that allows to estimate $f(F^{-1}(p))$ the survival density at a given quantile, for a given probability $0 < p < 1$.
+Implementation of a resampling procedure was inspired by Lin et al., 2015 that allows to estimate the density at a given quantile $f(F^{-1}(p))$, for a given probability $0 < p < 1$.
 We require the densities at the quantiles to be strictly positive, and we denote as $\hat{F}$ the consistent estimator for $F$ obtained from the usual Kaplan-Meier estimation. Taking this estimator we obtain $\hat{F}^{-1}(p)$ the estimators of the inverse distribution at $p$. Then we propose the following estimation procedure:
 
 1. Generate B realizations of the gaussian $T \sim \mathcal{N}(0, \sigma^2)$, denoted by $T_1,..., T_B$
 2.  Calculate $\sqrt{n}\left( \hat{F}\left(\hat{F}^{-1}(p) + \dfrac{T_b}{\sqrt{n}}\right) - p \right), b = 1,..., B$ and denote them as $y_b$, then the least squares estimate of $f(F^{-1}(p))$ is $\hat{A} = (x'x)^{-1}x'Y$, where $x= (T_1,..., T_B)^T$ and $Y = (y_1,..., y_B)^T$
 
-We highlight that the selection of the variance of the sampled Gaussians is crucial, as it can significantly affect the accuracy of the density estimation.
-
 ## Variance selection 
 ### Impact of the variance on the MSE
-In order to highlight the effect of $\sigma^2$ on the accuracy of the estimation, we illustrate the estimation of the density at the median for an exponential distribution with rate $1.5$, and compute the MSE for a range of values of $\sigma$. We perform 100 repetitions of the code, assume censoring to be independent and to follow an exponential distribution with rate 0.48. We generate $B=10^5$ zero-mean Gaussians. 
+We advocate that the selection of the variance of the sampled Gaussians is crucial, as it can significantly affect the accuracy of the density estimation. 
+In order to highlight this, we illustrate the estimation of the density at the median for an exponential distribution with rate $1.5$, and compute the MSE for a range of values of $\sigma$. We perform 100 repetitions of the code, assume censoring to be independent and to follow an exponential distribution with rate 0.48. We generate $B=10^5$ zero-mean Gaussians. 
 The code to generate these simulations is available on `MSE/Densite_Point_Estim - Exponential.R`.
 
 We notice that, especially for small sample sizes, the value of $\sigma$ plays an important role in the value of the MSE. Indeed, as sample size increases, the region where MSE is minimized becomes broader, which allows for greater flexibility when choosing the variance within a wider interval of values where the MSE is close to zero. For all sample sizes, we observe that the MSE has a pattern where it decreases until it reaches a plateau, where it remains low over a range of $\sigma$ values, before increasing again. Our goal in practical applications where survival and censoring distributions are unknown is to be able to automatically detect, from the observed times, such a plateau, and select a value of $\sigma$ that lays inside this interval, which grows broader as sample size increases.
