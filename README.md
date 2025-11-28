@@ -33,9 +33,10 @@ In practice the true value of the density at the quantile is unknown, so we cann
 
 We illustrate this algorithm for an exponential distribution with rate 1.5 with censoring that follows an exponential with rate 0.12 (approximately 10% of censoring). We are interested in estimating the density of the exponential at the median, for which the true value is 0.75. We then perform the estimation of the density at the quantile for a grid of $\sigma$  that ranges from 0.1 to 10, in steps of length 0.05. We observe that there exists an interval of values of $\sigma$ such that the estimation is small before it and decreases after it as well. We aim to choose a value of $\sigma$ that lays inside this interval, because this is the interval that corresponds to the values close to the true value (represented by the dotted red line). Our code allows us to detect such interval and then it chooses a value of $\sigma$ that lays inside it. The chosen value is represented in the vertical blue line in the corresponding figures. In this illustrative example, we obtain an estimation of the density at the median equal to 0.745831, for a corresponding value of $\sigma$ equal to 3.75. 
 
-![example of density estim at exponential](https://github.com/user-attachments/assets/51a4f61a-6b2e-4cbf-8f38-0a4ad79a8388)
-
-![diff for density estim exponential](https://github.com/user-attachments/assets/2c19be49-ae6a-4f97-8454-845116ead13f)
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/51a4f61a-6b2e-4cbf-8f38-0a4ad79a8388" alt="density estimation example" width="400" style="margin-right:10px;">
+  <img src="https://github.com/user-attachments/assets/2c19be49-ae6a-4f97-8454-845116ead13f" alt="density estimation difference" width="400">
+</p>
 
 The folder src has the corresponding codes for computing the estimation of the density for the Exponential and Cauchy distributions. The estimations using our proposed procedure are compared to the ones obtained using kernel density estimation (KDE) with bandwidth parameter approximated using leave-one-out cross-validation. Our implementation of LOOCV in the presence of censoring is available on `src/code_source.R`.
 
