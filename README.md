@@ -21,11 +21,11 @@ The code to generate these simulations is available on `MSE/Densite_Point_Estim 
 
 We notice that, especially for small sample sizes, the value of $\sigma$ plays an important role in the value of the MSE. Indeed, as sample size increases, the region where MSE is minimized becomes broader, which allows for greater flexibility when choosing the variance within a wider interval of values where the MSE is close to zero. For all sample sizes, we observe that the MSE has a pattern where it decreases until it reaches a plateau, where it remains low over a range of $\sigma$ values, before increasing again. Our goal in practical applications where survival and censoring distributions are unknown is to be able to automatically detect, from the observed times, such a plateau, and select a value of $\sigma$ that lays inside this interval, which grows broader as sample size increases.
 
-<img src="https://github.com/user-attachments/assets/572cc906-e562-4f06-8847-dc4873499e58" alt="new_expo_n50_M100" width="400">
-
-![new_expo_n200_M100](https://github.com/user-attachments/assets/7c72629f-3ff9-434e-a1b8-ca12dc407801)
-
-![new_expo_n1000_M100](https://github.com/user-attachments/assets/ca0f7a68-b66a-423b-9898-464795b7f8b8)
+<p float="left">
+  <img src="https://github.com/user-attachments/assets/572cc906-e562-4f06-8847-dc4873499e58" alt="n50" width="300" style="margin-right:10px;">
+  <img src="https://github.com/user-attachments/assets/7c72629f-3ff9-434e-a1b8-ca12dc407801" alt="n200" width="300" style="margin-right:10px;">
+  <img src="https://github.com/user-attachments/assets/ca0f7a68-b66a-423b-9898-464795b7f8b8" alt="n1000" width="300">
+</p>
 
 
 #### Grid-search algorithm for variance selection
