@@ -1,7 +1,8 @@
 # Resampling method for density estimation at quantile and Clinical trial design for the comparison of single and multiple quantiles with right-censored data
-This repository contains functions and code used in the following papers:
+This repository contains functions and code developped for the following papers:
 
 1."Designing clinical trials for the comparison of single and multiple quantiles with right-censored data"
+
 2. "A note on a resampling procedure for density estimation at quantiles"
 
 The resampling procedure implemented here was inspired by Lin et al. (2015) and is used to estimate the density at a given quantile $f(F^{-1}(p))$, for a given probability $0 < p < 1$.
