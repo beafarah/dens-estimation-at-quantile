@@ -9,7 +9,7 @@ The resampling procedure implemented here was inspired by Lin et al. (2015) and 
 This estimation is essential for performing tests of equality of quantiles in the presence of right-censored data, as proposed in our clinical trial design paper.
 
 ## Resampling procedure
-Let $ \hat{F}$ denote the Kaplan-Meier estimator of the distribution $F$, and $\hat{F}^{-1}(p)$ its inverse at probability $p$. The procedure to estimate $f(\hat{F}^{-1}(p))$ is as follows:
+Let $\hat{F}$ denote the Kaplan-Meier estimator of the distribution $F$, and $\hat{F}^{-1}(p)$ its inverse at probability $p$. The procedure to estimate $f(\hat{F}^{-1}(p))$ is as follows:
 1. Generate B realizations of the gaussian $T \sim \mathcal{N}(0, \sigma^2)$, denoted by $T_1,..., T_B$
 2.  Calculate $\sqrt{n}\left( \hat{F}\left(\hat{F}^{-1}(p) + \dfrac{T_b}{\sqrt{n}}\right) - p \right), b = 1,..., B$ and denote them as $y_b$, then the least squares estimate of $f(F^{-1}(p))$ is $\hat{A} = (x'x)^{-1}x'Y$, where $x= (T_1,..., T_B)^T$ and $Y = (y_1,..., y_B)^T$
 
