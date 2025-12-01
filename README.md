@@ -8,7 +8,7 @@ This repository contains functions and code developped for the following papers:
 ### 📁 MSE
 
 This folder includes:
-- **`Densite_Point_Estim - Exponential.R`**: A script containing the simulation code for evaluating the Mean Squared Error (MSE) of density point estimation under an exponential distribution for various values of ( \sigma ).
+- **`Densite_Point_Estim - Exponential.R`**: A script containing the simulation code for evaluating the Mean Squared Error (MSE) of density point estimation under an exponential distribution for various values of σ.
 - **`n50/`** ,  **`n200/`** ,  **`n1000/`** : Folders that store the outputs of the MSE simulations.
 
 ### 📁 scr
