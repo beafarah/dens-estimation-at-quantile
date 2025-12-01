@@ -18,9 +18,9 @@ This folder contains all core scripts for resampling, testing, and simulations.
 - **`code_source.R`**: Script with all functions necessary for the resampling procedure for density estimation, as well as for the univariate and multivariate tests of equality of quantiles, with the explicit power from the analytical formula for designing clinical trials and the estimated power for the test in the presence of data.
   Some of the main functions:
 ```
-- SurvQtestExp_new & SurvQtestPieceExp_new: analytical power for the univariate test for a given difference in quantiles ( \Delta ) for exponential and piecewise exponential treatments, respectively
+- SurvQtestExp_new & SurvQtestPieceExp_new: analytical power for the univariate test for a given difference in quantiles Δ for exponential and piecewise exponential treatments, respectively
 - SurvQtestExp_empirical & SurvQtestPieceExp_empirical: empirical rejection rate for exponential and piecewise exponential treatments, respectively
-- new_lin_estimation: estimation of the density at a fixed quantile for a given value of ( \sigma )
+- new_lin_estimation: estimation of the density at a fixed quantile for a given value of σ
 ```
 
 - **`planning a clinical trial.R`**: Includes all simulation code used in the *Planning a clinical trial* section of the paper *Designing clinical trials for the comparison of single and multiple quantiles with right-censored data*
