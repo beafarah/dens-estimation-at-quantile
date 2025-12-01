@@ -4,16 +4,14 @@ This repository contains functions and code developped for the following papers:
 * *Designing clinical trials for the comparison of single and multiple quantiles with right-censored data*
 * *A note on a resampling procedure for density estimation at quantiles*
 
-%The resampling procedure implemented here was inspired by Lin et al. (2015) and is used to estimate the density at a given quantile $f(F^{-1}(p))$, for a given probability $0 < p < 1$.
-%This estimation is essential for performing tests of equality of quantiles in the presence of right-censored data, as proposed in our clinical trial design paper.
-
-## 📁 MSE
+## Overview:
+### 📁 MSE
 
 This folder includes:
 - **`Densite_Point_Estim - Exponential.R`**: A script containing the simulation code for evaluating the Mean Squared Error (MSE) of density point estimation under an exponential distribution for various values of ( \sigma ).
 - * **`n50/`** , * **`n200/`** , * **`n1000/`** : Folders that store the outputs of the MSE simulations.
 
-## 📁 scr
+### 📁 scr
 
 This folder contains all core scripts for resampling, testing, and simulations.
 
