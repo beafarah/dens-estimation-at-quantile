@@ -9,7 +9,7 @@ This repository contains functions and code developped for the following papers:
 
 This folder includes:
 - **`Densite_Point_Estim - Exponential.R`**: A script containing the simulation code for evaluating the Mean Squared Error (MSE) of density point estimation under an exponential distribution for various values of ( \sigma ).
-- * **`n50/`** , * **`n200/`** , * **`n1000/`** : Folders that store the outputs of the MSE simulations.
+- * **`n50/`** ,  **`n200/`** ,  **`n1000/`** : Folders that store the outputs of the MSE simulations.
 
 ### 📁 scr
 
@@ -20,6 +20,7 @@ This folder contains all core scripts for resampling, testing, and simulations.
 -  **`test on OAK data.R`**: Provides the results of applying the univariate and multivariate tests to data from the OAK clinical trial, which correspond to section *Application of the test on data from the OAK study* of the paper *Designing clinical trials for the comparison of single and multiple quantiles with right-censored data*
 -  **`simulations_and_results.R`**: Contains all simulations related to the paper *A note on a resampling procedure for density estimation at quantiles*, which correspond to the resampling method to estimate the desnity at a given quantile.
 
+<!--
 ## Resampling procedure
 Let $\hat{F}$ denote the Kaplan-Meier estimator of the distribution $F$, and $\hat{F}^{-1}(p)$ its inverse at probability $p$. The procedure to estimate $f(\hat{F}^{-1}(p))$ is as follows:
 1. Generate B realizations of the gaussian $T \sim \mathcal{N}(0, \sigma^2)$, denoted by $T_1,..., T_B$
@@ -67,6 +68,9 @@ This repository is organised as follows:
     - test on OAK data: applying the density estimation for the univariate and multivariate test of equality of quantiles detailed in our paper "Designing clinical trials for the comparison of single and multiple quantiles with right-censored data"
  
 - `/MSE`: codes for the figures for MSE varying with variance, for exponential distribution
+
+
+-->
 
 # References
 Farah, Beatriz, Aurélien Latouche, and Olivier Bouaziz. "A note on a resampling procedure for estimating the density at a given quantile." arXiv preprint arXiv:2509.02207 (2025).
