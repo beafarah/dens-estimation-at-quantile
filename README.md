@@ -80,8 +80,8 @@ This repository is organised as follows:
 -->
 
 # References
-Farah, Beatriz, Aurélien Latouche, and Olivier Bouaziz. "A note on a resampling procedure for estimating the density at a given quantile." arXiv preprint arXiv:2509.02207 (2025).
+Farah, B., Latouche, A., & Bouaziz, O. (2025). A note on a resampling procedure for estimating the density at a given quantile. arXiv:2509.02207.
 
-Beatriz Farah, Olivier Bouaziz, Aurélien Latouche. Designing clinical trials for the comparison of single and multiple quantiles with right-censored data. 2025. ⟨hal-05052387v2⟩
+Farah, B., Bouaziz, O., & Latouche, A. (2025). Designing clinical trials for the comparison of single and multiple quantiles with right-censored data. HAL: hal-05052387v2.
 
-Lin, C., Zhang, L., & Zhou, Y. (2015). Conditional quantile residual lifetime models for right censored data. Lifetime data analysis, 21, 75-96.
+Lin, C., Zhang, L., & Zhou, Y. (2015). Conditional quantile residual lifetime models for right-censored data. Lifetime Data Analysis, 21, 75–96.
