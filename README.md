@@ -16,6 +16,13 @@ This folder includes:
 This folder contains all core scripts for resampling, testing, and simulations.
 
 - **`code_source.R`**: Script with all functions necessary for the resampling procedure for density estimation, as well as for the univariate and multivariate tests of equality of quantiles, with the explicit power from the analytical formula for designing clinical trials and the estimated power for the test in the presence of data.
+  Some of the main functions:
+```
+- SurvQtestExp_new & SurvQtestPieceExp_new: analytical power for the univariate test for a given difference in quantiles \Delta for exponential and piecewise exponential treatments, respectively
+- SurvQtestExp_empirical & SurvQtestPieceExp_empirical: empirical rejection rate for exponential and piecewise exponential treatments, respectively
+- new_lin_estimation: estimation of the density at a fixed quantile for a given value of \sigma
+```
+
 - **`planning a clinical trial.R`**: Includes all simulation code used in the *Planning a clinical trial* section of the paper *Designing clinical trials for the comparison of single and multiple quantiles with right-censored data*
 -  **`test on OAK data.R`**: Provides the results of applying the univariate and multivariate tests to data from the OAK clinical trial, which correspond to section *Application of the test on data from the OAK study* of the paper *Designing clinical trials for the comparison of single and multiple quantiles with right-censored data*
 -  **`simulations_and_results.R`**: Contains all simulations related to the paper *A note on a resampling procedure for density estimation at quantiles*, which correspond to the resampling method to estimate the desnity at a given quantile.
