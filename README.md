@@ -5,8 +5,18 @@ This repository contains functions and code developped for the following papers:
 
 2. "A note on a resampling procedure for density estimation at quantiles"
 
-The resampling procedure implemented here was inspired by Lin et al. (2015) and is used to estimate the density at a given quantile $f(F^{-1}(p))$, for a given probability $0 < p < 1$.
-This estimation is essential for performing tests of equality of quantiles in the presence of right-censored data, as proposed in our clinical trial design paper.
+%The resampling procedure implemented here was inspired by Lin et al. (2015) and is used to estimate the density at a given quantile $f(F^{-1}(p))$, for a given probability $0 < p < 1$.
+%This estimation is essential for performing tests of equality of quantiles in the presence of right-censored data, as proposed in our clinical trial design paper.
+
+We provide:
+- MSE: folder with the script `Densite_Point_Estim - Exponential.R`, which contains the code for the simulations of MSE for different values of sigma in the exponential distribution. Folders `n50`, `n200`, `n1000` are the results of the simulations of the MSE for different sample sizes.
+- scr: folder with:
+
+`- code_source.R: script with all functions necessary for the resampling procedure for density estimation, as well as for the univariate and multivariate tests of equality of quantiles, with the explicit power from the analytical formula for designing clinical trials and the estimated power for the test in the presence of data.
+- planning a clinical trial.R: script with all the simulations for the paper "Designing clinical trials for the comparison of single and multiple quantiles with right-censored data", for the section of planning clinical trials.
+- test on OAK data.R: results of the univariate and multivariate tests in the presence of data from the OAK clinical trial
+- simulations_and_results.R: script with all the simulations for the paper "A note on a resampling procedure for density estimation at quantiles"
+`
 
 ## Resampling procedure
 Let $\hat{F}$ denote the Kaplan-Meier estimator of the distribution $F$, and $\hat{F}^{-1}(p)$ its inverse at probability $p$. The procedure to estimate $f(\hat{F}^{-1}(p))$ is as follows:
